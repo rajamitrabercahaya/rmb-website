@@ -173,7 +173,7 @@ export default function MenuCarousel({ businesses }: { businesses: BusinessMenu[
         </div>
       </div>
 
-      {activeProduct && <dialog ref={dialogRef} className="dish-dialog" aria-labelledby="dish-dialog-title" onClick={(event) => { if (event.target === event.currentTarget) dialogRef.current?.close(); }}>
+      {activeProduct?.image && <dialog ref={dialogRef} className="dish-dialog" aria-labelledby="dish-dialog-title" onClick={(event) => { if (event.target === event.currentTarget) dialogRef.current?.close(); }}>
         <button className="dish-dialog-close" type="button" onClick={() => dialogRef.current?.close()} aria-label="Tutup foto sajian">×</button>
         <div className="dish-dialog-image">
           <Image src={activeProduct.image} alt={`Foto ${activeProduct.name}`} fill sizes="(max-width: 700px) 92vw, 56vw" loading="eager" unoptimized={activeProduct.image.startsWith("https://")} />
