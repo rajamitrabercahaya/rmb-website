@@ -41,10 +41,10 @@ export default function Home() {
 
       <section className="hero" id="top">
         <div className="hero-copy" id="tentang">
-          <p className="eyebrow"><span className="eyebrow-dot" /> RAGAM USAHA KULINER</p>
+          <p className="eyebrow"><span className="eyebrow-dot" /> KULINER &amp; DURIAN PILIHAN</p>
           <h1>Dari tegukan<br />hingga <em>suapan.</em></h1>
           <p className="hero-wordline" aria-label="Segar, hangat, beragam"><span className="hero-word-rotator"><span aria-hidden="true">Segar</span><span aria-hidden="true">Hangat</span><span aria-hidden="true">Beragam</span></span></p>
-          <p className="hero-intro">Dari Kroya, Raja Mitra Bercahaya mengelola ragam usaha kuliner—dari tegukan segar hingga suapan hangat.</p>
+          <p className="hero-intro">Berawal di Kroya, Raja Mitra Bercahaya mengelola beberapa usaha kuliner dan menjual durian premium, tersedia sebagai daging durian maupun durian biji.</p>
           <a className="text-link" href="#menu-rmb">Jelajahi usaha <Arrow /></a>
         </div>
         <figure className="hero-art" aria-label="Logo Raja Mitra Bercahaya dengan aksen orbit">
@@ -76,8 +76,8 @@ export default function Home() {
           <p className="location-intro">Kantor dan gudang Raja Mitra Bercahaya berada di Babakan, Bajing Kulon.</p>
           <div className="warehouse-sale">
             <p className="outlet-kicker">PENJUALAN LANGSUNG DARI GUDANG</p>
-            <p className="outlet-name">Durian untuk dibawa pulang</p>
-            <p className="warehouse-sale-note">Daging durian beku dalam kemasan box, serta buah durian utuh yang didinginkan. Pembelian langsung di gudang RMB, sesuai ketersediaan stok.</p>
+            <p className="outlet-name">Daging durian &amp; durian biji</p>
+            <p className="warehouse-sale-note">Daging durian dan durian biji tersedia per pack. Keduanya dapat dibeli langsung di gudang RMB selama stok tersedia.</p>
           </div>
           <div className="location-actions">
             <a className="light-button" href="https://maps.google.com/?q=96C7%2BXWV%2C+Jl.+Tumapel%2C+RT.03%2FRW.01%2C+Babakan%2C+Bajing+Kulon%2C+Kabupaten+Cilacap" target="_blank" rel="noreferrer">Petunjuk arah ke gudang <Arrow /></a>

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent, type TouchEvent } from "react";
 
 export type MenuItem = {
   name: string;
@@ -26,6 +26,7 @@ export default function MenuCarousel({ businesses }: { businesses: BusinessMenu[
   const [showProductPreview, setShowProductPreview] = useState(false);
   const [dialogRequest, setDialogRequest] = useState(0);
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const swipeStart = useRef<{ x: number; y: number } | null>(null);
   const activeBusiness = businesses[businessIndex];
   const activeProduct = activeBusiness.products[activeProductIndex] ?? null;
 
@@ -41,6 +42,22 @@ export default function MenuCarousel({ businesses }: { businesses: BusinessMenu[
 
   function selectAdjacentBusiness(direction: -1 | 1) {
     setBusinessIndex((index) => (index + direction + businesses.length) % businesses.length);
+  }
+
+  function handleSwipeStart(event: TouchEvent<HTMLDivElement>) {
+    const touch = event.changedTouches[0];
+    swipeStart.current = { x: touch.clientX, y: touch.clientY };
+  }
+
+  function handleSwipeEnd(event: TouchEvent<HTMLDivElement>) {
+    if (!swipeStart.current) return;
+    const touch = event.changedTouches[0];
+    const deltaX = touch.clientX - swipeStart.current.x;
+    const deltaY = touch.clientY - swipeStart.current.y;
+    swipeStart.current = null;
+
+    if (Math.abs(deltaX) < 48 || Math.abs(deltaX) < Math.abs(deltaY) * 1.25) return;
+    selectAdjacentBusiness(deltaX < 0 ? 1 : -1);
   }
 
   function selectAdjacentProduct(direction: -1 | 1) {
@@ -93,7 +110,7 @@ export default function MenuCarousel({ businesses }: { businesses: BusinessMenu[
         </div>
       </div>
 
-      <div className="menu-experience" id="menu-rmb">
+      <div className="menu-experience" id="menu-rmb" onTouchStart={handleSwipeStart} onTouchEnd={handleSwipeEnd} onTouchCancel={() => { swipeStart.current = null; }}>
         <div className="business-slide-track">
           {businesses.map((business, businessSlideIndex) => {
             const isActive = businessSlideIndex === businessIndex;
@@ -122,7 +139,7 @@ export default function MenuCarousel({ businesses }: { businesses: BusinessMenu[
                           top: `${vertical}%`,
                           "--bubble-left": `${position}%`,
                           "--bubble-top": `${vertical}%`,
-                          animationDelay: `${index * 75}ms, ${index * 75 + 720}ms`,
+                          animationDelay: `${index * 32}ms, ${index * 32 + 480}ms`,
                         } as CSSProperties}
                         aria-label={item.image ? `Lihat detail ${item.name}` : `${item.name}, detail menyusul`}
                         disabled={!item.image}
