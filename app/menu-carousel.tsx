@@ -182,7 +182,6 @@ export default function MenuCarousel({ businesses }: { businesses: BusinessMenu[
                     ) : (
                       <Image src={business.logo} alt="" fill sizes="(max-width: 680px) 48vw, 320px" loading={isActive ? "eager" : "lazy"} />
                     )}
-                    <span className="featured-menu-toggle-badge" aria-hidden="true">{showMenuBubbles ? "−" : "+"}</span>
                   </button>
                 </div>
 
