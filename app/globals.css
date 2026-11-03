@@ -219,13 +219,19 @@ img { display: block; max-width: 100%; }
 .footer-invitation h2 em { color: #e5bb73; font-weight: 400; }
 .footer-invitation-action { max-width: 380px; justify-self: end; padding-bottom: 7px; }
 .footer-invitation-action > p { color: #c7b9aa; font-size: 15px; line-height: 1.8; }
-.footer-top { max-width: var(--content); margin: auto; padding: 42px 0 36px; display: grid; grid-template-columns: 1.1fr .8fr .9fr auto; align-items: start; gap: 28px; }
+.footer-top { max-width: var(--content); margin: auto; padding: 42px 0 36px; display: grid; grid-template-columns: 1.1fr .8fr .9fr .7fr auto; align-items: start; gap: 28px; }
 .footer-identity .rmb-logo { width: 58px; height: 46px; filter: brightness(0) invert(1); mix-blend-mode: screen; }
 .footer-identity > span { color: #d0c5b9; }
 .footer-social { display: flex; flex-direction: column; align-items: flex-start; gap: 11px; color: #e8dfd5; font-size: 12px; }
 .footer-social > span { margin-bottom: 2px; color: #e3bf95; font-size: 10px; font-weight: 700; letter-spacing: .15em; }
-.footer-social a { transition: color .2s; }
+.footer-social a { display: inline-flex; align-items: center; gap: 7px; transition: color .2s; }
+.footer-brand-icon { width: 15px; height: 15px; flex: 0 0 auto; color: #e3bf95; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .footer-social a:hover, .footer-top-link:hover { color: #e6a3a0; }
+.footer-contact { display: flex; flex-direction: column; align-items: flex-start; gap: 13px; }
+.footer-contact > span { color: #e3bf95; font-size: 10px; font-weight: 700; letter-spacing: .15em; }
+.footer-contact-icons { display: flex; gap: 9px; }
+.footer-contact-icons > span { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid rgba(215,188,130,.48); border-radius: 50%; color: #e8dfd5; }
+.footer-contact-icons svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 .footer-top-link { justify-self: end; color: #d0c5b9; font-size: 9px; font-weight: 700; letter-spacing: .1em; }
 .footer-bottom { max-width: var(--content); margin: auto; padding-top: 15px; display: flex; justify-content: space-between; gap: 15px; border-top: 1px solid var(--line-light); color: #aa9e92; font-size: 9px; font-weight: 600; letter-spacing: .1em; }
 
@@ -319,7 +325,12 @@ img { display: block; max-width: 100%; }
   .footer-top { grid-template-columns: 1fr 1fr; gap: 27px 14px; padding: 30px 0 25px; }
   .footer-social { gap: 9px; font-size: 10px; }
   .footer-social > span, .footer-top-link, .footer-bottom { font-size: 8px; }
-  .footer-top-link { justify-self: start; align-self: end; }
+  .footer-contact { gap: 11px; }
+  .footer-contact > span { font-size: 8px; }
+  .footer-contact-icons { gap: 7px; }
+  .footer-contact-icons > span { width: 34px; height: 34px; }
+  .footer-contact-icons svg { width: 17px; height: 17px; }
+  .footer-top-link { grid-column: 1 / -1; justify-self: end; align-self: end; }
   .footer-bottom { flex-wrap: wrap; }
   .footer-bottom span:last-child { display: none; }
 }
