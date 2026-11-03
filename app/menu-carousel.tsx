@@ -29,7 +29,6 @@ export default function MenuCarousel({ businesses }: { businesses: BusinessMenu[
   const swipeStart = useRef<{ x: number; y: number } | null>(null);
   const activeBusiness = businesses[businessIndex];
   const activeProduct = activeBusiness.products[activeProductIndex] ?? null;
-
   useEffect(() => {
     setActiveProductIndex(0);
     setShowProductPreview(false);
@@ -171,7 +170,7 @@ export default function MenuCarousel({ businesses }: { businesses: BusinessMenu[
                         <span className="featured-menu-caption">{previewProduct.type}</span>
                       </>
                     ) : (
-                      <Image src={business.logo} alt="" fill sizes="(max-width: 680px) 48vw, 320px" />
+                      <Image src={business.logo} alt="" fill sizes="(max-width: 680px) 48vw, 320px" loading={isActive ? "eager" : "lazy"} />
                     )}
                   </div>
                 </div>
