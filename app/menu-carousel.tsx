@@ -24,6 +24,7 @@ export default function MenuCarousel({ businesses }: { businesses: BusinessMenu[
   const [businessIndex, setBusinessIndex] = useState(0);
   const [activeProductIndex, setActiveProductIndex] = useState(0);
   const [showProductPreview, setShowProductPreview] = useState(false);
+  const [showMenuBubbles, setShowMenuBubbles] = useState(true);
   const [dialogRequest, setDialogRequest] = useState(0);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const swipeStart = useRef<{ x: number; y: number } | null>(null);
@@ -32,6 +33,7 @@ export default function MenuCarousel({ businesses }: { businesses: BusinessMenu[
   useEffect(() => {
     setActiveProductIndex(0);
     setShowProductPreview(false);
+    setShowMenuBubbles(true);
   }, [businessIndex]);
 
   useEffect(() => {
@@ -130,7 +132,7 @@ export default function MenuCarousel({ businesses }: { businesses: BusinessMenu[
 
                     return (
                       <button
-                        className={`table-choice${isActive && index === activeProductIndex ? " is-active" : ""}`}
+                        className={`table-choice${isActive && index === activeProductIndex ? " is-active" : ""}${showMenuBubbles ? "" : " is-hidden"}`}
                         key={`${business.id}-${item.name}`}
                         type="button"
                         style={{
@@ -141,7 +143,8 @@ export default function MenuCarousel({ businesses }: { businesses: BusinessMenu[
                           animationDelay: `${index * 32}ms, ${index * 32 + 480}ms`,
                         } as CSSProperties}
                         aria-label={item.image ? `Lihat detail ${item.name}` : `${item.name}, detail menyusul`}
-                        disabled={!item.image}
+                        disabled={!item.image || !showMenuBubbles}
+                        aria-hidden={!showMenuBubbles}
                         onClick={() => { if (isActive && item.image) openDetail(index); }}
                       >
                         {item.image ? (
@@ -156,7 +159,14 @@ export default function MenuCarousel({ businesses }: { businesses: BusinessMenu[
                     );
                   })}
 
-                  <div className={`featured-dish${previewProduct?.image ? " featured-menu-preview" : " featured-business"}`} aria-hidden="true">
+                  <button
+                    className={`featured-dish${previewProduct?.image ? " featured-menu-preview" : " featured-business"}`}
+                    type="button"
+                    aria-label={showMenuBubbles ? "Sembunyikan pilihan menu" : "Tampilkan pilihan menu"}
+                    aria-expanded={showMenuBubbles}
+                    title={showMenuBubbles ? "Sentuh untuk menyembunyikan menu" : "Sentuh untuk menampilkan menu"}
+                    onClick={() => setShowMenuBubbles((visible) => !visible)}
+                  >
                     {previewProduct?.image ? (
                       <>
                         <Image
@@ -172,7 +182,8 @@ export default function MenuCarousel({ businesses }: { businesses: BusinessMenu[
                     ) : (
                       <Image src={business.logo} alt="" fill sizes="(max-width: 680px) 48vw, 320px" loading={isActive ? "eager" : "lazy"} />
                     )}
-                  </div>
+                    <span className="featured-menu-toggle-badge" aria-hidden="true">{showMenuBubbles ? "−" : "+"}</span>
+                  </button>
                 </div>
 
                 <div className="menu-detail" aria-live={isActive ? "polite" : "off"} aria-atomic="true">
