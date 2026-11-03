@@ -161,6 +161,11 @@ img { display: block; max-width: 100%; }
 .menu-detail-category span { margin-inline: 5px; color: #e6a3a0; }
 .menu-detail h3 { max-width: none; margin-top: 10px; color: var(--cream-light); font-family: var(--serif); font-size: clamp(40px, 4vw, 60px); font-weight: 400; line-height: .96; letter-spacing: -.025em; animation: dish-enter .35s ease both; }
 .menu-detail-note { max-width: 38ch; margin-top: 15px; color: #d1d2c8; font-size: 15px; line-height: 1.68; }
+.business-social-links { display: flex; gap: 10px; margin-top: 21px; }
+.business-social-icon { width: 42px; height: 42px; display: inline-grid; place-items: center; border: 1px solid rgba(215,188,130,.52); border-radius: 50%; color: #e3bf95; transition: background .2s, color .2s, transform .2s; }
+.business-map-trigger { padding: 0; background: transparent; font: inherit; cursor: pointer; }
+.business-social-icon svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.business-social-icon:hover { transform: translateY(-2px); background: #e3bf95; color: #1d2b24; }
 .menu-current-dish { margin-top: 18px; color: #a99d91; font-size: 12px; }
 .menu-current-dish strong { display: block; margin-top: 4px; color: #edddc9; font-family: var(--serif); font-size: 22px; font-weight: 400; }
 @keyframes brand-enter { from { opacity: .65; scale: .94; } to { opacity: 1; scale: 1; } }
@@ -181,6 +186,17 @@ img { display: block; max-width: 100%; }
 .dish-dialog-copy > * { animation: dish-copy-in .48s cubic-bezier(.2,.7,.25,1) both; }
 .dish-dialog-copy h2 { margin-top: 18px; font-family: var(--serif); font-size: clamp(40px, 4.3vw, 58px); font-weight: 400; line-height: .96; animation-delay: .05s; }
 .dish-dialog-copy > p:not(.menu-detail-brand) { margin-top: 17px; color: #6d6258; font-size: 15px; line-height: 1.75; animation-delay: .1s; }
+.business-map-dialog { position: fixed; inset: 0; width: min(100% - 32px, 900px); max-width: none; max-height: calc(100svh - 32px); margin: auto; padding: 0; display: none; grid-template-rows: auto minmax(0, 1fr) auto; overflow: hidden; border: 1px solid rgba(189,152,87,.62); border-radius: 8px; background: var(--cream-light); color: var(--ink); box-shadow: 0 40px 120px rgba(0,0,0,.4); }
+.business-map-dialog[open] { display: grid; animation: dish-dialog-in .36s cubic-bezier(.2,.75,.25,1) both; }
+.business-map-dialog::backdrop { background: rgba(20,16,13,.78); backdrop-filter: blur(6px); animation: dish-backdrop-in .3s ease both; }
+.business-map-heading { position: relative; padding: 18px 76px 16px 24px; border-bottom: 1px solid var(--line); }
+.business-map-heading p { color: #b28a57; font-size: 9px; font-weight: 700; letter-spacing: .16em; }
+.business-map-heading h2 { margin-top: 4px; font-family: var(--serif); font-size: 34px; font-weight: 400; line-height: 1; }
+.business-map-frame { min-height: 0; overflow: hidden; background: #e2ded4; }
+.business-map-frame iframe { width: 100%; height: 100%; display: block; border: 0; }
+.business-map-footer { padding: 15px 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; color: #6d6258; font-size: 12px; }
+.business-map-footer a { color: var(--red-deep); font-weight: 700; white-space: nowrap; }
+.business-map-footer a span { margin-left: 5px; color: var(--gold); }
 @keyframes dish-dialog-in { from { opacity: 0; transform: translateY(13px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
 @keyframes dish-backdrop-in { from { opacity: 0; } to { opacity: 1; } }
 @keyframes dish-image-in { from { opacity: .7; transform: scale(1.025); } to { opacity: 1; transform: scale(1); } }
@@ -257,6 +273,7 @@ img { display: block; max-width: 100%; }
   .table-stage { width: min(100%, 640px); }
   .menu-detail { max-width: 560px; justify-self: center; text-align: center; }
   .menu-detail h3, .menu-detail-note, .menu-detail-help { margin-inline: auto; }
+  .business-social-links { justify-content: center; }
   .menu-detail-category { margin-top: 17px; }
   .location { grid-template-columns: minmax(230px,.8fr) minmax(0,1.2fr); gap: 5%; }
 }
@@ -357,6 +374,11 @@ img { display: block; max-width: 100%; }
 }
 
 @media (max-width: 680px) {
+  .business-map-dialog { width: min(100% - 24px, 580px); max-height: calc(100svh - 36px); }
+  .business-map-heading { padding: 16px 62px 14px 18px; }
+  .business-map-heading h2 { font-size: 29px; }
+  .business-map-frame { min-height: 42svh; }
+  .business-map-footer { padding: 13px 16px; align-items: flex-start; flex-direction: column; gap: 8px; font-size: 11px; }
   .dish-dialog { width: min(100% - 40px, 440px); max-height: calc(100svh - 96px); grid-template-columns: 1fr; overflow-y: auto; border-radius: 7px; }
   .dish-dialog::backdrop { backdrop-filter: blur(4px); }
   .dish-dialog-image { min-height: 0; aspect-ratio: 1.42; }

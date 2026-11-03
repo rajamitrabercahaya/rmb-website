@@ -17,6 +17,11 @@ export type BusinessMenu = {
   category: string;
   description: string;
   logo: string;
+  tiktok?: string;
+  instagram?: string;
+  priceListUrl?: string;
+  mapUrl?: string;
+  mapEmbedUrl?: string;
   products: MenuItem[];
 };
 
@@ -27,6 +32,7 @@ export default function MenuCarousel({ businesses }: { businesses: BusinessMenu[
   const [showMenuBubbles, setShowMenuBubbles] = useState(true);
   const [dialogRequest, setDialogRequest] = useState(0);
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const mapDialogRef = useRef<HTMLDialogElement>(null);
   const swipeStart = useRef<{ x: number; y: number } | null>(null);
   const activeBusiness = businesses[businessIndex];
   const activeProduct = activeBusiness.products[activeProductIndex] ?? null;
@@ -190,6 +196,20 @@ export default function MenuCarousel({ businesses }: { businesses: BusinessMenu[
                   <p className="menu-detail-category">{String(businessSlideIndex + 1).padStart(2, "0")} <span>/</span> {String(businesses.length).padStart(2, "0")} USAHA RMB</p>
                   <h3>{business.name}</h3>
                   <p className="menu-detail-note">{business.description}</p>
+                  {isActive && (business.tiktok || business.instagram || business.mapUrl || business.priceListUrl) && <div className="business-social-links">
+                    {business.tiktok && <a className="business-social-icon" href={business.tiktok} target="_blank" rel="noreferrer" aria-label={`TikTok ${business.name}`} title={`TikTok ${business.name}`}>
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v11.2a4.2 4.2 0 1 1-3.5-4.1M14 3c.4 2.6 2 4.4 5 5" /></svg>
+                    </a>}
+                    {business.instagram && <a className="business-social-icon" href={business.instagram} target="_blank" rel="noreferrer" aria-label={`Instagram ${business.name}`} title={`Instagram ${business.name}`}>
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.8" r=".8" fill="currentColor" stroke="none"/></svg>
+                    </a>}
+                    {business.mapUrl && <button className="business-social-icon business-map-trigger" type="button" onClick={() => mapDialogRef.current?.showModal()} aria-label={`Buka peta ${business.name}`} title={`Buka peta ${business.name}`}>
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5.2-8 12-8 12S4 15.2 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+                    </button>}
+                    {business.priceListUrl && <a className="business-social-icon" href={business.priceListUrl} target="_blank" rel="noreferrer" aria-label={`Daftar harga ${business.name}`} title={`Daftar harga ${business.name}`}>
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h8l4 4V20.5H7z"/><path d="M15 3.5v4h4M10 11h6M10 14h6M10 17h4"/><path d="M4 6v15h11"/></svg>
+                    </a>}
+                  </div>}
                   {isActive && product && business.products.length > 1 && <p className="menu-current-dish">Pilihan saat ini <strong>{product.name}</strong></p>}
                 </div>
 
@@ -209,6 +229,12 @@ export default function MenuCarousel({ businesses }: { businesses: BusinessMenu[
           <h2 id="dish-dialog-title">{activeProduct.name}</h2>
           <p>{activeProduct.note}</p>
         </div>
+      </dialog>}
+
+      {activeBusiness.mapEmbedUrl && activeBusiness.mapUrl && <dialog ref={mapDialogRef} className="business-map-dialog" aria-labelledby="business-map-title" onClick={(event) => { if (event.target === event.currentTarget) mapDialogRef.current?.close(); }}>
+        <div className="business-map-heading"><div><p>LOKASI USAHA</p><h2 id="business-map-title">{activeBusiness.name}</h2></div><button className="dish-dialog-close" type="button" onClick={() => mapDialogRef.current?.close()} aria-label="Tutup peta">×</button></div>
+        <div className="business-map-frame"><iframe title={`Peta ${activeBusiness.name}`} src={activeBusiness.mapEmbedUrl} loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></div>
+        <div className="business-map-footer"><span>Temukan lokasi Mouza Coffee di Kroya.</span><a href={activeBusiness.mapUrl} target="_blank" rel="noreferrer">Buka di Google Maps <span aria-hidden="true">↗</span></a></div>
       </dialog>}
     </>
   );

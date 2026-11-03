@@ -20,7 +20,7 @@ const businessMenus: BusinessMenu[] = [
   { id: "radja", name: "Radja Es Teler Sultan", category: "ES TELER · MINUMAN SEGAR", description: "Pilihan es teler dan minuman segar.", logo: "/brand/cutouts/radja-es-teler.png", products: radjaProducts },
   { id: "bakso", name: "Bakso Bar-Bar", category: "BAKSO · SAJIAN HANGAT", description: "Sajian Bakso Bar-Bar untuk dinikmati bersama.", logo: "/brand/cutouts/bar-bar-bakso.png", products: [] },
   { id: "dawet", name: "Es Dawet Durian Bar-Bar", category: "DAWET DURIAN · MINUMAN SEGAR", description: "Es dawet durian.", logo: "/brand/cutouts/bar-bar-es-dawet-durian.png", products: [] },
-  { id: "mouza", name: "Mouza Coffee", category: "COFFEE · SOCIAL SPACE · PASTRY", description: "Kopi, pastry, dan ruang untuk berkumpul.", logo: "/brand/cutouts/mouza-coffee.png", products: [] },
+  { id: "mouza", name: "Mouza Coffee", category: "COFFEE · SOCIAL SPACE · PASTRY", description: "Kopi, pastry, dan ruang untuk berkumpul.", logo: "/brand/cutouts/mouza-coffee.png", tiktok: "https://www.tiktok.com/@mouzacoffee", instagram: "https://www.instagram.com/mouza_coffeeshop/", priceListUrl: "https://drive.google.com/file/d/1nEpn4R98dATizrJdIZ0HdVVnF1pwz29V/view?usp=drivesdk", mapUrl: "https://www.google.com/maps/place/Mouza+coffee,social+space+and+pastry/@-7.632834,109.2372336,17z/data=!3m1!4b1!4m6!3m5!1s0x2e6541007e28d2b1:0x23dc0e22333c8ef6!8m2!3d-7.6328393!4d109.2398085!16s%2Fg%2F11z_vn_n00", mapEmbedUrl: "https://maps.google.com/maps?q=-7.6328393,109.2398085&z=17&output=embed", products: [] },
 ];
 
 function Mark() {
