@@ -234,7 +234,7 @@ export default function MenuCarousel({ businesses }: { businesses: BusinessMenu[
       {activeBusiness.mapEmbedUrl && activeBusiness.mapUrl && <dialog ref={mapDialogRef} className="business-map-dialog" aria-labelledby="business-map-title" onClick={(event) => { if (event.target === event.currentTarget) mapDialogRef.current?.close(); }}>
         <div className="business-map-heading"><div><p>LOKASI USAHA</p><h2 id="business-map-title">{activeBusiness.name}</h2></div><button className="dish-dialog-close" type="button" onClick={() => mapDialogRef.current?.close()} aria-label="Tutup peta">×</button></div>
         <div className="business-map-frame"><iframe title={`Peta ${activeBusiness.name}`} src={activeBusiness.mapEmbedUrl} loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></div>
-        <div className="business-map-footer"><span>Temukan lokasi Mouza Coffee di Kroya.</span><a href={activeBusiness.mapUrl} target="_blank" rel="noreferrer">Buka di Google Maps <span aria-hidden="true">↗</span></a></div>
+        <div className="business-map-footer"><span>Temukan lokasi {activeBusiness.name} di Kroya.</span><a href={activeBusiness.mapUrl} target="_blank" rel="noreferrer">Buka di Google Maps <span aria-hidden="true">↗</span></a></div>
       </dialog>}
     </>
   );
